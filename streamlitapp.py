@@ -1,9 +1,8 @@
+import os
+key = os.getenv("GEMINI_KEY")
 import streamlit as st
 import google.generativeai as genai
 
-# Read API key from a file
-with open(".gemini.txt", "r") as file:
-    key = file.read().strip()  # Strip any extra whitespace or newline characters
 
 # Define the system prompt
 system_prompt = """
