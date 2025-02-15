@@ -1,8 +1,8 @@
 import os
-key = os.getenv("GEMINI_KEY")
 import streamlit as st
 import google.generativeai as genai
 
+key = os.getenv("GEMINI_API_KEY")
 
 # Define the system prompt
 system_prompt = """
@@ -33,7 +33,7 @@ If the query is unrelated to code review, bug fixing, or code analysis, politely
 """
 
 # Configure the Generative AI model
-genai.configure(api_key=key)
+genai.configure(api_key="AIzaSyAgyPZMiLIeFPfSQrHWMT8NApUk-fAlOqU")
 model = genai.GenerativeModel("gemini-2.0-flash-exp", system_instruction=system_prompt)
 
 def main():
@@ -41,6 +41,12 @@ def main():
     
     # Text area for user to input Python code
     code = st.text_area("Enter your Python code below:", height=200)
+    uploaded_file = st.file_uploader("Or upload a Python file for review:", type=["py"])
+    
+    if uploaded_file is not None:
+        code = uploaded_file.read().decode("utf-8")  # Read and decode file content
+        st.text_area("Uploaded File Content:", code, height=200, disabled=True)
+    
     
     # Button to review code
     if st.button("Review Code"):
