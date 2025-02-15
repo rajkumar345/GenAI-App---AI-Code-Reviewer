@@ -33,7 +33,7 @@ If the query is unrelated to code review, bug fixing, or code analysis, politely
 """
 
 # Configure the Generative AI model
-genai.configure(api_key="AIzaSyAgyPZMiLIeFPfSQrHWMT8NApUk-fAlOqU")
+genai.configure(api_key=key)
 model = genai.GenerativeModel("gemini-2.0-flash-exp", system_instruction=system_prompt)
 
 def main():
